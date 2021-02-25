@@ -52,11 +52,14 @@
   ],
   "dependencies": {
     "@n8tb1t/use-scroll-position": "^1.0.43",
+    "bootstrap": "^4.6.0",
     "gatsby": "^2.20.12",
     "gatsby-image": "^2.3.1",
     "prop-types": "^15.7.2",
     "react-helmet": "^6.0.0",
     "react-icons": "^3.9.0",
-    "video-react": "^0.14.1"
+    "styled-components": "^5.2.1",
+    "wmk-color-palette": "^0.1.6",
+    "wmk-lib": "^1.23.0"
   }
 }

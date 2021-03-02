@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { WMKLink } from "wmk-lib";
-import { colors } from "../../vars/palette";
-import Theme from "../../vars/ThemeOptions";
+import { colors } from "../../../vars/palette";
+import Theme from "../../../vars/ThemeOptions";
 
 const DrawerWrap = styled.div`
   display: flex;

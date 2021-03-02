@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import { colors } from "../../vars/palette";
+import { colors } from "../../../vars/palette";
 
 const BurgerWrap = styled.button`
   position: relative;

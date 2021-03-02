@@ -10,7 +10,7 @@ const MenuText = styled.span`
   display: ${({ isStuck }) => (isStuck ? "none" : "block")};
 `;
 
-const Hamburger = ({ isOpen, toggle, height, isStuck }) => {
+const Hamburger = ({ isOpen, toggle, height, isStuck, tracking }) => {
   return (
     <React.Fragment>
       <Toggle
@@ -18,6 +18,7 @@ const Hamburger = ({ isOpen, toggle, height, isStuck }) => {
         toggle={toggle}
         height={height}
         isStuck={isStuck}
+        tracking={tracking}
       />
       <MenuText isOpen={isOpen} isStuck={isStuck}>
         {isOpen ? "CLOSE" : "MENU"}

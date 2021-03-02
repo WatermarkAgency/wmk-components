@@ -1,8 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { ColorPalette, Gradient } from 'wmk-color-palette';
 import { WMKLink } from 'wmk-lib';
+
+function _extends() {
+  _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  return _extends.apply(this, arguments);
+}
 
 function _taggedTemplateLiteralLoose(strings, raw) {
   if (!raw) {
@@ -96,14 +114,34 @@ var BurgerButton = function BurgerButton(_ref7) {
       isOpen = _ref7.isOpen,
       toggle = _ref7.toggle,
       height = _ref7.height,
-      colorPalatte = _ref7.colorPalatte;
+      colorPalatte = _ref7.colorPalatte,
+      tracking = _ref7.tracking;
+
+  var _useState = useState(),
+      data = _useState[0],
+      setData = _useState[1];
+
+  useEffect(function () {
+    var dL = window && window.dataLayer || [];
+
+    if (tracking && window && window.dataLayer) {
+      setData(dL);
+    }
+  }, [tracking]);
 
   var lineBaseStyle = function lineBaseStyle(isStuck) {
     return "\n  background: " + colorPalatte.hex("primary") + ";\n  border: none;\n  height: 1px;\n  width: 100%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  transition: all 0.35s ease;\n  cursor: pointer;\n  " + (isStuck ? "width: 70%;\n  top: 0.75rem;" : "") + "\n";
   };
 
   return /*#__PURE__*/React.createElement(BurgerWrap, {
-    onClick: toggle,
+    onClick: function onClick() {
+      toggle();
+      var event = tracking.event,
+          params = tracking.params;
+      return tracking && data ? data.push(_extends({
+        event: event
+      }, params)) : undefined;
+    },
     style: {
       top: height / 2 / 2 + "px"
     },
@@ -149,12 +187,14 @@ var Hamburger = function Hamburger(_ref4) {
   var isOpen = _ref4.isOpen,
       toggle = _ref4.toggle,
       height = _ref4.height,
-      isStuck = _ref4.isStuck;
+      isStuck = _ref4.isStuck,
+      tracking = _ref4.tracking;
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(BurgerButton, {
     isOpen: isOpen,
     toggle: toggle,
     height: height,
-    isStuck: isStuck
+    isStuck: isStuck,
+    tracking: tracking
   }), /*#__PURE__*/React.createElement(MenuText, {
     isOpen: isOpen,
     isStuck: isStuck
@@ -405,7 +445,7 @@ var Theme = new ThemeOptions({
 });
 
 var _templateObject$2;
-var DrawerWrap = styled.div(_templateObject$2 || (_templateObject$2 = _taggedTemplateLiteralLoose(["\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  position: fixed;\n  padding: 0;\n  z-index: 999;\n  overflow: hidden;\n  width: 100%;\n  height: 100vh;\n  transform: translateY(-100vh);\n  background: none;\n  transition: all 0.3s ease-out;\n  & > * {\n    visibility: hidden;\n  }\n  a {\n    opacity: 0;\n    position: relative;\n    left: 20vw;\n    color: ", ";\n    :nth-of-type(1) {\n      transition: left 0.4s ease-out, opacity 0.6s ease-in-out;\n      transition-delay: 0.3s;\n    }\n    :nth-of-type(2) {\n      transition: left 0.4s ease-out, opacity 0.6s ease-in-out;\n      transition-delay: 0.35s;\n    }\n    :nth-of-type(3) {\n      transition: left 0.4s ease-out, opacity 0.6s ease-in-out;\n      transition-delay: 0.45s;\n    }\n    :nth-of-type(4) {\n      transition: left 0.4s ease-out, opacity 0.6s ease-in-out;\n      transition-delay: 0.35s;\n    }\n    :nth-of-type(5) {\n      transition: left 0.4s ease-out, opacity 0.6s ease-in-out;\n      transition-delay: 0.3s;\n    }\n  }\n  &.open {\n    background: ", ";\n    padding: 4%;\n    transform: translateY(-1vh);\n    transition: all 0.3s ease-out;\n    & > * {\n      visibility: visible;\n    }\n    a {\n      opacity: 1;\n      left: 0vw;\n      font-size: 2.5rem;\n      font-family: ", ";\n      text-transform: uppercase;\n      color: ", ";\n      :hover {\n        //text-decoration: none;\n        color: ", ";\n      }\n    }\n  }\n"])), colors.hex("secondary"), colors.rgba("reverse", 0.9), Theme.font.head, colors.hex("secondary"), colors.hex("primary"));
+var DrawerWrap = styled.div(_templateObject$2 || (_templateObject$2 = _taggedTemplateLiteralLoose(["\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  position: fixed;\n  padding: 0;\n  z-index: 999;\n  overflow: hidden;\n  width: 100%;\n  height: 100vh;\n  transform: translateY(-100vh);\n  background: none;\n  transition: all 0.3s ease-out;\n  & > * {\n    visibility: hidden;\n  }\n  a {\n    opacity: 0;\n    position: relative;\n    left: 20vw;\n    color: #0072ed;\n    :nth-of-type(1) {\n      transition: left 0.4s ease-out, opacity 0.6s ease-in-out;\n      transition-delay: 0.3s;\n    }\n    :nth-of-type(2) {\n      transition: left 0.4s ease-out, opacity 0.6s ease-in-out;\n      transition-delay: 0.35s;\n    }\n    :nth-of-type(3) {\n      transition: left 0.4s ease-out, opacity 0.6s ease-in-out;\n      transition-delay: 0.45s;\n    }\n    :nth-of-type(4) {\n      transition: left 0.4s ease-out, opacity 0.6s ease-in-out;\n      transition-delay: 0.35s;\n    }\n    :nth-of-type(5) {\n      transition: left 0.4s ease-out, opacity 0.6s ease-in-out;\n      transition-delay: 0.3s;\n    }\n  }\n  &.open {\n    background: ", ";\n    padding: 4%;\n    transform: translateY(-1vh);\n    transition: all 0.3s ease-out;\n    & > * {\n      visibility: visible;\n    }\n    a {\n      opacity: 1;\n      left: 0vw;\n      font-size: 2.5rem;\n      font-family: ", ";\n      text-transform: uppercase;\n      color: ", ";\n      :hover {\n        //text-decoration: none;\n        color: ", ";\n      }\n    }\n  }\n"])), colors.rgba("reverse", 0.9), Theme.font.head, colors.hex("secondary"), colors.hex("primary"));
 
 var Drawer = function Drawer(_ref) {
   var menus = _ref.menus,

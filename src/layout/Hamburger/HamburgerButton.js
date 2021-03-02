@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import { colors } from "../../vars/palette";
@@ -50,7 +50,21 @@ const BtmBar = styled.span`
       : `transform: rotate(130deg); left: 16px;`}
 `;
 
-const BurgerButton = ({ isStuck, isOpen, toggle, height, colorPalatte }) => {
+const BurgerButton = ({
+  isStuck,
+  isOpen,
+  toggle,
+  height,
+  colorPalatte,
+  tracking,
+}) => {
+  const [data, setData] = useState();
+  useEffect(() => {
+    const dL = (window && window.dataLayer) || [];
+    if (tracking && window && window.dataLayer) {
+      setData(dL);
+    }
+  }, [tracking]);
   const lineBaseStyle = (isStuck) => `
   background: ${colorPalatte.hex("primary")};
   border: none;
@@ -70,7 +84,11 @@ const BurgerButton = ({ isStuck, isOpen, toggle, height, colorPalatte }) => {
 `;
   return (
     <BurgerWrap
-      onClick={toggle}
+      onClick={()=>{
+        toggle()
+        const { event, params } = tracking;
+        return tracking && data ? data.push({ event, ...params }) : undefined;
+      }}
       style={{ top: `${height / 2 / 2}px` }}
       aria-label={isOpen ? "Close Menu" : "Open Menu"}
     >

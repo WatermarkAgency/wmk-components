@@ -24,7 +24,7 @@ const DrawerWrap = styled.div`
     opacity: 0;
     position: relative;
     left: 20vw;
-    color: ${colors.hex("secondary")};
+    color: #0072ed;
     :nth-of-type(1) {
       transition: left 0.4s ease-out, opacity 0.6s ease-in-out;
       transition-delay: 0.3s;
